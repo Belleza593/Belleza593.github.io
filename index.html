@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belleza Express - Manicure & Pedicure</title>
+    <title>Manicura Clásica - Manicure & Pedicure</title>
     <link rel="icon" type="image/x-icon" href="logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +53,92 @@
             --border-color: var(--border-light);
             --nav-bg: var(--nav-bg-light);
         }
+
+        .servicio-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(var(--primary), 0.1);
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.servicio-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.servicio-icono {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.servicio-titulo {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.servicio-descripcion {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.detalles-toggle {
+    width: 100%;
+    padding: 1rem;
+    background: var(--toggle-bg);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.detalles-toggle:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.lista-servicios li {
+    border-bottom: 1px dashed var(--border);
+    color: var(--text);
+}
+
+.precios-seccion {
+    background: rgba(var(--primary), 0.05);
+    border: 2px solid var(--primary);
+}
+
+.precio-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+}
+
+.precio-tipo {
+    color: var(--primary);
+}
+
+.precio-valor {
+    color: var(--text);
+}
 
         body.dark-mode {
             --primary: var(--primary-dark);
@@ -693,6 +779,170 @@ body.dark-mode .logo span {
     opacity: 1;
 }
 
+.servicio-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+            border: 2px solid #E91E63;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+        }
+
+        .servicio-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .servicio-icono {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #E91E63, #F48FB1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .servicio-titulo {
+            font-size: 1.8rem;
+            color: #E91E63;
+            margin-bottom: 0.5rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .servicio-descripcion {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .detalles-toggle {
+            width: 100%;
+            padding: 1rem;
+            background: #FCE4EC;
+            border: 2px solid #E91E63;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #E91E63;
+        }
+
+        .detalles-toggle:hover {
+            background: #E91E63;
+            color: white;
+        }
+
+        .detalles-contenido {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .lista-servicios {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .lista-servicios li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px dashed #F8BBD0;
+            font-size: 1.1rem;
+        }
+
+        .lista-servicios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-servicios i {
+            color: #E91E63;
+            width: 25px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .precios-seccion {
+            background: rgba(233, 30, 99, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #E91E63;
+            margin-top: 1.5rem;
+        }
+
+        .precios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .precio-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #F8BBD0;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .precio-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .precio-tipo {
+            color: #E91E63;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .precio-valor {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .rotacion-activa {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .servicio-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .servicio-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .precios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
 @media (max-width: 768px) {
     .email-icon::after {
         display: none; /* Ocultar texto en móviles */
@@ -909,10 +1159,11 @@ body.dark-mode .logo span {
             <li><a href="#equipo">Equipo</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li>
+                <!--
                 <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
-                </button>
+                </button>-->
             </li>
         </ul>
     </nav>
@@ -962,36 +1213,53 @@ body.dark-mode .logo span {
             </div>
         </section>
 
-        <section class="servicios" id="servicios">
-            <h2 class="section-title">Nuestros Servicios Distinguidos</h2>
-            <div class="container">
-                <div class="cursos-grid">
-                    <!-- Servicio de Esmaltado Profesional -->
-                    <div class="curso-card">
-                     <center>   <h3>Manicura Clásica</h3>
-                        <p>Transformación completa de tus uñas con técnicas profesionales y materiales de primera calidad.</p></center>
-                        <button class="toggle-btn" aria-expanded="false">
-                            <span>Ver Detalles</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="curso-info">
-                            <ul>
-                                <li><strong>Incluye:</strong></li>
-                                <li>• Limado de precisión</li>
-                                <li>• Cuidado de cutículas</li>
-                                <li>• Exfoliación suave</li>
-                                <li>• Masaje hidratante</li>
-                                <li>• Esmaltado profesional</li>
-                                <h4 class="precios-titulo">Precios:</h4>
-                        <ul class="precios-lista">
-                            <li><strong>Tradicional:</strong> $3</li>
-                            <li><strong>Con diseños:</strong> $4</li>
-                            <li><strong>Diseños + piedras:</strong> $5</li>
-                            <li><strong>Semipermanente:</strong> $10</li>
-                            </ul>
+        <section class="servicio-section">
+            <div class="servicio-card">
+                <div class="servicio-header">
+                    <div class="servicio-icono">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <div>
+                        <h3 class="servicio-titulo">Manicura Clásica</h3>
+                        <p class="servicio-descripcion">Transformación completa de tus uñas con técnicas profesionales y materiales de primera calidad.</p>
+                    </div>
+                </div>
+    
+                <button class="detalles-toggle">
+                    <span>Ver Detalles Completos</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+    
+                <div class="detalles-contenido">
+                    <ul class="lista-servicios">
+                        <li><i class="fas fa-check-circle"></i>Limado de precisión</li>
+                        <li><i class="fas fa-check-circle"></i>Cuidado de cutículas</li>
+                        <li><i class="fas fa-check-circle"></i>Exfoliación suave</li>
+                        <li><i class="fas fa-check-circle"></i>Masaje hidratante</li>
+                        <li><i class="fas fa-check-circle"></i>Esmaltado profesional</li>
+                    </ul>
+    
+                    <div class="precios-seccion">
+                        <h4 style="color: #E91E63; margin-bottom: 1.5rem;">Nuestros Precios:</h4>
+                        <div class="precios-grid">
+                            <div class="precio-item">
+                                <div class="precio-tipo">Tradicional</div>
+                                <div class="precio-valor">$3</div>
+                            </div>
+                            <div class="precio-item">
+                                <div class="precio-tipo">Con diseños</div>
+                                <div class="precio-valor">$4</div>
+                            </div>
+                            <div class="precio-item">
+                                <div class="precio-tipo">Diseños + piedras</div>
+                                <div class="precio-valor">$5</div>
+                            </div>
+                            <div class="precio-item">
+                                <div class="precio-tipo">Semipermanente</div>
+                                <div class="precio-valor">$10</div>
+                            </div>
                         </div>
                     </div>
-        
                 </div>
             </div>
         </section>
@@ -1183,6 +1451,28 @@ document.addEventListener('DOMContentLoaded', showCookieBanner);
 
         track.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.querySelector('.detalles-toggle');
+            const contenido = document.querySelector('.detalles-contenido');
+            const icono = document.querySelector('.detalles-toggle i');
+
+            toggleBtn.addEventListener('click', () => {
+                const isOpen = contenido.style.maxHeight;
+                
+                if (isOpen && isOpen !== '0px') {
+                    contenido.style.maxHeight = '0';
+                    icono.classList.remove('rotacion-activa');
+                    toggleBtn.style.background = '#FCE4EC';
+                    toggleBtn.style.color = '#E91E63';
+                } else {
+                    contenido.style.maxHeight = `${contenido.scrollHeight}px`;
+                    icono.classList.add('rotacion-activa');
+                    toggleBtn.style.background = '#E91E63';
+                    toggleBtn.style.color = 'white';
+                }
+            });
         });
 
         track.addEventListener('touchend', e => {
