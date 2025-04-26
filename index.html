@@ -196,7 +196,8 @@
             padding: 0 1rem;
         }
 
-       /* ========== ESTILOS DEL MENÚ ========== */
+
+/* Estructura del menú */
 nav {
     background: var(--nav-bg);
     padding: 1rem 2rem;
@@ -206,60 +207,53 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
 }
 
 .logo a {
     color: var(--primary);
+    font-size: 1.5rem;
     font-weight: 600;
-    font-size: 1.8rem;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.7rem;
-    transition: color var(--transition-speed) ease;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .logo span {
-    color: var(--primary-light);
-}
-
-.logo i {
-    font-size: 1.8rem;
+    color: var(--text-color);
 }
 
 .menu-list {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
+    list-style: none;
     align-items: center;
 }
 
 .menu-list a {
-    color: var(--text);
-    font-weight: 500;
-    padding: 0.7rem 1.3rem;
-    border-radius: var(--border-radius-sm);
-    position: relative;
-    transition: all var(--transition-speed) ease;
-    letter-spacing: 0.3px;
+    color: var(--text-color);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-.menu-list a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--primary);
-    transition: width var(--transition-speed) ease;
+.menu-list a i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
 }
 
-.menu-list a:hover::after {
-    width: 100%;
+.menu-list a:hover {
+    background: var(--hover-bg);
+    color: var(--primary);
 }
 
 .menu-list a.active {
@@ -267,59 +261,76 @@ nav {
     font-weight: 600;
 }
 
+/* Botón modo oscuro */
+.dark-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 0.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+    background: var(--hover-bg);
+}
+
+.dark-toggle .fa-sun {
+    display: none;
+}
+
+.dark-mode .dark-toggle .fa-moon {
+    display: none;
+}
+
+.dark-mode .dark-toggle .fa-sun {
+    display: block;
+}
+
+/* Menú móvil */
 .menu-btn {
     display: none;
     background: none;
     border: none;
-    color: var(--text);
-    font-size: 1.8rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem;
-    transition: transform var(--transition-speed) ease;
 }
 
-.menu-btn:hover {
-    transform: scale(1.1);
-}
-
-/* ========== MENÚ RESPONSIVE ========== */
 @media (max-width: 768px) {
     .menu-btn {
         display: block;
     }
-
+    
     .menu-list {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--nav-bg);
-        padding: 1.8rem;
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
         flex-direction: column;
-        text-align: center;
-        box-shadow: var(--shadow-md);
+        background: var(--nav-bg);
+        transition: left 0.3s ease;
+        padding: 2rem;
+        gap: 1rem;
     }
-
+    
     .menu-list.active {
-        display: flex;
+        left: 0;
     }
-
+    
     .menu-list li {
-        margin-bottom: 1.2rem;
-    }
-
-    .menu-list li:last-child {
-        margin-bottom: 0;
-    }
-
-    .menu-list a {
-        padding: 1rem;
-        display: block;
         width: 100%;
     }
+    
+    .menu-list a {
+        justify-content: center;
+        padding: 1rem;
+    }
 }
-
 /* ========== MODO OSCURO ========== */
 body.dark-mode .menu-list a {
     color: var(--text-dark);
@@ -1147,20 +1158,20 @@ body.dark-mode .logo span {
 <body>
     <nav>
         <div class="logo">
-            <a href="#inicio"><i class="fas fa-cut"></i> Manicura<span>Clásica</span></a>
+            <a href="#inicio"><i class="fas fa-hand-sparkles"></i> Manicura<span>Clásica</span></a>
         </div>
-        <button class="menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+        <button class="menu-btn" aria-label="Toggle Menu">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="menu-list">
-            <li><a href="#inicio" class="active">Inicio</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#equipo">Equipo</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#servicios"><i class="fas fa-spa"></i> Servicios</a></li>
+            <li><a href="#galeria"><i class="far fa-images"></i> Galería</a></li>
+            <li><a href="#equipo"><i class="fas fa-users"></i> Equipo</a></li>
+            <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <!--
             <li>
-                <!--
-                <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                <button class="dark-toggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>-->
@@ -1312,6 +1323,11 @@ body.dark-mode .logo span {
     <a href="mailto:merly2431@gmail.com" class="email-icon" aria-label="Enviar correo electrónico">
         <i class="fas fa-envelope"></i>
     </a>
+
+    <a href="#inicio">
+        <i class="fas fa-home"></i>
+
+        </a>
 </div>
             <p>Ciudadela la Floresta - Chone - Manabí - • Lunes a Sábado 9:00 - 20:00</p>
         </div>
@@ -1327,233 +1343,179 @@ body.dark-mode .logo span {
         </div>
     </div>
 </div>
-
-    <script>
-        // Bloquear clic derecho y teclas de inspección
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
-        });
-        // Si deseas agregar funcionalidad adicional al hover
-document.querySelectorAll('.email-icon').forEach(icon => {
-    icon.addEventListener('mouseenter', () => {
-        icon.style.transform = 'translateY(-5px) scale(1.1)';
+<script>
+    // Bloquear inspección
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
     });
     
-    icon.addEventListener('mouseleave', () => {
-        icon.style.transform = 'translateY(0) scale(1)';
+    // Efectos email
+    document.querySelectorAll('.email-icon').forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            icon.style.transform = 'translateY(-5px) scale(1.1)';
+        });
+        
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        icon.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'mailto:merly2431@gmail.com?subject=Consulta&body=Hola, quisiera más información sobre...';
+        });
     });
-});
-
-// Función para abrir cliente de correo
-document.querySelector('.email-icon').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.href = 'mailto:tucorreo@gmail.com?subject=Consulta&body=Hola, quisiera más información sobre...';
-});
-
-        // Carrusel
+    
+    // Carrusel
+    const carouselInit = () => {
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
         const dotsContainer = document.querySelector('.carousel-dots');
         let currentIndex = 0;
         let autoSlideInterval;
-
-        // Cookie Consent Logic
-const cookieConsent = document.getElementById('cookieConsent');
-const acceptCookies = document.getElementById('acceptCookies');
-const rejectCookies = document.getElementById('rejectCookies');
-
-// Check if cookie preference is stored
-function checkCookieConsent() {
-    return localStorage.getItem('cookiesAccepted');
-}
-
-// Show banner if no consent decision exists
-function showCookieBanner() {
-    if (!checkCookieConsent()) {
-        cookieConsent.classList.add('active');
-    }
-}
-
-// Hide banner and store preference
-function hideCookieBanner() {
-    cookieConsent.classList.remove('active');
-}
-
-// Event Listeners
-acceptCookies.addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'true');
-    hideCookieBanner();
-    // Aquí puedes agregar la carga de scripts de cookies
-});
-
-rejectCookies.addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'false');
-    hideCookieBanner();
-    // Aquí puedes agregar código para eliminar cookies existentes si es necesario
-});
-
-// Initialize cookie check on page load
-document.addEventListener('DOMContentLoaded', showCookieBanner);
-
-// Optional: Clear storage for testing
-// localStorage.removeItem('cookiesAccepted');
-
-        // Crear puntos indicadores
+    
+        // Crear puntos de navegación
         slides.forEach((_, index) => {
             const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (index === 0) dot.classList.add('active');
+            dot.className = 'carousel-dot';
+            index === 0 && dot.classList.add('active');
             dot.addEventListener('click', () => moveToSlide(index));
             dotsContainer.appendChild(dot);
         });
-
+    
         const dots = Array.from(dotsContainer.children);
-
-        function updateDots(index) {
+    
+        const updateDots = (index) => {
             dots.forEach(dot => dot.classList.remove('active'));
             dots[index].classList.add('active');
-        }
-
-        function moveToSlide(index) {
+        };
+    
+        const moveToSlide = (index) => {
             track.style.transform = `translateX(-${index * 100}%)`;
             currentIndex = index;
             updateDots(index);
-        }
-
+        };
+    
         document.querySelector('.carousel-prev').addEventListener('click', () => {
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
             moveToSlide(currentIndex);
         });
-
+    
         document.querySelector('.carousel-next').addEventListener('click', () => {
             currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
             moveToSlide(currentIndex);
         });
-
-        // Auto slide
-        function startAutoSlide() {
+    
+        // Control automático
+        const startAutoSlide = () => {
             autoSlideInterval = setInterval(() => {
                 currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
                 moveToSlide(currentIndex);
             }, 5000);
-        }
-
+        };
+    
         startAutoSlide();
-
-        // Pausar al interactuar
+    
+        // Controles de interacción
         track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
         track.addEventListener('mouseleave', startAutoSlide);
-
-        // Touch events
+    
+        // Control táctil
         let touchStartX = 0;
-        let touchEndX = 0;
-
-        track.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.querySelector('.detalles-toggle');
-            const contenido = document.querySelector('.detalles-contenido');
-            const icono = document.querySelector('.detalles-toggle i');
-
-            toggleBtn.addEventListener('click', () => {
-                const isOpen = contenido.style.maxHeight;
-                
-                if (isOpen && isOpen !== '0px') {
-                    contenido.style.maxHeight = '0';
-                    icono.classList.remove('rotacion-activa');
-                    toggleBtn.style.background = '#FCE4EC';
-                    toggleBtn.style.color = '#E91E63';
-                } else {
-                    contenido.style.maxHeight = `${contenido.scrollHeight}px`;
-                    icono.classList.add('rotacion-activa');
-                    toggleBtn.style.background = '#E91E63';
-                    toggleBtn.style.color = 'white';
-                }
-            });
-        });
-
+        track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
         track.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) {
-                currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-            } else if (touchEndX - touchStartX > 50) {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-            }
-            moveToSlide(currentIndex);
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            Math.abs(diff) > 50 && moveToSlide(
+                diff > 0 
+                    ? Math.min(currentIndex + 1, slides.length - 1)
+                    : Math.max(currentIndex - 1, 0)
+            );
         });
-
-        // Menu móvil
+    };
+    
+    // Cookies
+    const cookieConsent = document.getElementById('cookieConsent');
+    const initCookieConsent = () => {
+        const acceptCookies = document.getElementById('acceptCookies');
+        const rejectCookies = document.getElementById('rejectCookies');
+        
+        const setConsent = (accepted) => {
+            localStorage.setItem('cookiesAccepted', accepted);
+            cookieConsent.classList.remove('active');
+        };
+    
+        acceptCookies.addEventListener('click', () => setConsent(true));
+        rejectCookies.addEventListener('click', () => setConsent(false));
+        
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookieConsent.classList.add('active');
+        }
+    };
+    
+    // Menú y tema
+    const initMenuAndTheme = () => {
         const menuBtn = document.querySelector('.menu-btn');
         const menuList = document.querySelector('.menu-list');
-        const menuLinks = document.querySelectorAll('.menu-list a');
-
+        const darkToggle = document.querySelector('.dark-toggle');
+    
         menuBtn.addEventListener('click', () => {
             menuList.classList.toggle('active');
             menuBtn.querySelector('i').classList.toggle('fa-times');
         });
-
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuList.classList.remove('active');
-                menuBtn.querySelector('i').classList.remove('fa-times');
-            });
-        });
-
-        // Modo oscuro
-        const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
+    
+        darkToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
-
-        if (localStorage.getItem('darkMode') === 'enabled') {
+    
+        if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
         }
-
-        // Detalles de servicios
+    };
+    
+    // Acordeones
+    const initAccordions = () => {
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const content = btn.nextElementSibling;
                 const isOpen = btn.classList.toggle('active');
-
-                content.style.maxHeight = isOpen
-                    ? `${content.scrollHeight}px`
-                    : '0';
-
-                btn.querySelector('i').style.transform = isOpen
-                    ? 'rotate(180deg)'
-                    : 'rotate(0deg)';
+                content.style.maxHeight = isOpen ? `${content.scrollHeight}px` : '0';
+                btn.querySelector('i').style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
             });
         });
-
-        // Navegación activa al scroll
+    };
+    
+    // Scroll observadores
+    const initScrollObservers = () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     document.querySelectorAll('.menu-list a').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${entry.target.id}`) {
-                            link.classList.add('active');
-                        }
+                        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
                     });
                 }
             });
         }, { threshold: 0.5 });
-
-        document.querySelectorAll('section[id]').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Mostrar/ocultar botón de WhatsApp al scroll
+    
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+    
+        // Botón WhatsApp
         const whatsappBtn = document.querySelector('.whatsapp-btn');
         window.addEventListener('scroll', () => {
-            whatsappBtn.style.transform = window.scrollY > 100
-                ? 'translateY(0)'
-                : 'translateY(150px)'; // Ajuste para que aparezca un poco después
+            whatsappBtn.style.transform = window.scrollY > 100 ? 'translateY(0)' : 'translateY(150px)';
         });
+    };
+    
+    // Inicialización completa
+    document.addEventListener('DOMContentLoaded', () => {
+        carouselInit();
+        initCookieConsent();
+        initMenuAndTheme();
+        initAccordions();
+        initScrollObservers();
+    });
     </script>
+   
 </body>
 </html>
