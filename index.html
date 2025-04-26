@@ -595,6 +595,39 @@
     transform: translateY(-2px);
     opacity: 0.9;
 }
+/* Estilos específicos para el icono de email */
+.email-icon {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.email-icon:hover {
+    color: #BB001B !important; /* Color rojo de Gmail */
+    transform: translateY(-3px) scale(1.1);
+}
+
+.email-icon::after {
+    content: "Gmail";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    font-family: var(--font-secondary);
+    color: var(--text);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.email-icon:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .email-icon::after {
+        display: none; /* Ocultar texto en móviles */
+    }
+}
 
 @media (max-width: 768px) {
     .cookie-content {
@@ -977,11 +1010,22 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Belleza Express. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
+            <!-- Dentro de tu sección footer, modifica el div de social-links -->
+<div class="social-links">
+    <a href="https://www.instagram.com/tu_perfil" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/tu_pagina" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.tiktok.com/@tu_perfil" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+    </a>
+    <!-- Nuevo icono de Gmail -->
+    <a href="mailto:merly2431@gmail.com" class="email-icon" aria-label="Enviar correo electrónico">
+        <i class="fas fa-envelope"></i>
+    </a>
+</div>
             <p>Av. Principal 1234 • Lunes a Sábado 9:00 - 20:00</p>
         </div>
     </footer>
@@ -1003,6 +1047,22 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
         });
+        // Si deseas agregar funcionalidad adicional al hover
+document.querySelectorAll('.email-icon').forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+        icon.style.transform = 'translateY(-5px) scale(1.1)';
+    });
+    
+    icon.addEventListener('mouseleave', () => {
+        icon.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Función para abrir cliente de correo
+document.querySelector('.email-icon').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'mailto:tucorreo@gmail.com?subject=Consulta&body=Hola, quisiera más información sobre...';
+});
 
         // Carrusel
         const track = document.querySelector('.carousel-track');
