@@ -7,11 +7,11 @@
     <link rel="icon" type="image/x-icon" href="logo-salon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Colores Femeninos Modernos */
+            /* Colores Femeninos Modernos y Elegantes */
             --primary-light: #E91E63; /* Rosa vibrante */
             --secondary-light: #F48FB1; /* Rosa más suave */
             --accent-light: #FFD740; /* Amarillo dorado */
@@ -31,7 +31,8 @@
             --border-dark: #616161;
             --nav-bg-dark: rgba(33, 33, 33, 0.95);
 
-            --font-primary: 'Poppins', sans-serif;
+            --font-primary: 'Playfair Display', serif; /* Fuente elegante */
+            --font-secondary: 'Poppins', sans-serif; /* Fuente para algunos elementos */
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -71,6 +72,16 @@
             font-family: var(--font-primary);
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
             scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        p, a, li, span, button {
+            font-family: var(--font-secondary);
         }
 
         html {
@@ -116,16 +127,16 @@
 
         .logo a {
             color: var(--primary);
-            font-weight: 700;
-            font-size: 1.7rem; /* Un poco más grande */
+            font-weight: 600; /* Ligeramente más ligero que antes */
+            font-size: 1.8rem; /* Un poco más grande */
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.6rem; /* Más espacio */
+            gap: 0.7rem; /* Más espacio */
         }
 
         .logo i {
-            font-size: 1.7rem; /* Icono del logo más grande si lo añades */
+            font-size: 1.8rem; /* Icono del logo más grande si lo añades */
         }
 
         .menu-btn {
@@ -141,17 +152,18 @@
         .menu-list {
             list-style: none;
             display: flex;
-            gap: 1.8rem; /* Más espacio entre enlaces */
+            gap: 2rem; /* Más espacio entre enlaces */
             align-items: center;
         }
 
         .menu-list a {
             color: var(--text);
             font-weight: 500;
-            padding: 0.6rem 1.2rem; /* Más padding */
+            padding: 0.7rem 1.3rem; /* Más padding */
             border-radius: var(--border-radius-sm);
             position: relative;
             transition: all var(--transition-speed);
+            letter-spacing: 0.3px; /* Ligero espaciado */
         }
 
         .menu-list a::after {
@@ -191,33 +203,35 @@
         }
 
         .hero-content h1 {
-            font-size: 3.8rem; /* Más grande */
-            margin-bottom: 1.8rem;
+            font-size: 4rem; /* Más grande y elegante */
+            margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-            letter-spacing: 0.5px; /* Ligero espaciado */
+            letter-spacing: 0.8px; /* Ligero espaciado */
         }
 
         .hero-content p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 2.2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-weight: 400;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.1rem;
             background-color: var(--primary);
             color: white;
-            padding: 1.3rem 3.2rem; /* Más padding */
+            padding: 1.4rem 3.4rem; /* Más padding */
             border-radius: var(--border-radius-xl);
             font-weight: 600;
             text-transform: uppercase;
-            margin-top: 2.5rem;
+            margin-top: 2.7rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             box-shadow: var(--shadow-md);
+            letter-spacing: 0.5px;
         }
 
         .cta-button:hover {
@@ -260,26 +274,28 @@
 
         .carousel-caption {
             position: absolute;
-            bottom: 2.5rem;
-            left: 2.5rem;
+            bottom: 3rem;
+            left: 3rem;
             color: white;
             text-align: left;
-            max-width: 650px;
+            max-width: 700px;
             background: rgba(0,0,0,0.6); /* Fondo más oscuro */
-            padding: 1.8rem;
+            padding: 2rem;
             border-radius: var(--border-radius-md);
         }
 
         .carousel-caption h3 {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-weight: 600;
         }
 
         .carousel-caption p {
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            line-height: 1.8;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-weight: 400;
         }
 
         .carousel-controls {
@@ -289,7 +305,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         .carousel-prev,
@@ -297,12 +313,12 @@
             background: rgba(255,255,255,0.3); /* Más translúcido */
             border: none;
             color: white;
-            padding: 1.2rem 1.5rem; /* Más padding */
+            padding: 1.3rem 1.6rem; /* Más padding */
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
-            font-size: 1.5rem; /* Iconos más grandes */
+            font-size: 1.6rem; /* Iconos más grandes */
         }
 
         .carousel-prev:hover,
@@ -313,16 +329,16 @@
 
         .carousel-dots {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 0.6rem;
+            gap: 0.7rem;
         }
 
         .carousel-dot {
-            width: 14px; /* Más grande */
-            height: 14px; /* Más grande */
+            width: 15px; /* Más grande */
+            height: 15px; /* Más grande */
             border-radius: 50%;
             background: rgba(255,255,255,0.6); /* Más translúcido */
             border: 1px solid rgba(255,255,255,0.8); /* Borde sutil */
@@ -343,40 +359,40 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem; /* Más grande */
+            font-size: 3rem; /* Más grande */
             margin-bottom: 3.5rem;
             position: relative;
             display: inline-block;
             width: auto; /* Ajustar al contenido */
-            padding: 0 1rem; /* Añadir padding lateral */
+            padding: 0 1.2rem; /* Añadir padding lateral */
         }
 
         .section-title::before,
         .section-title::after {
             content: '';
             display: inline-block;
-            width: 50px;
+            width: 60px;
             height: 2px;
             background: var(--secondary); /* Color secundario para las líneas */
             vertical-align: middle;
-            margin: 0 1rem;
+            margin: 0 1.2rem;
         }
 
         .section-title::after {
-            width: 60px; /* Un poco más larga */
+            width: 70px; /* Un poco más larga */
         }
 
         .cursos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Min-width ligeramente mayor */
-            gap: 2.5rem; /* Más espacio */
-            padding: 2.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); /* Min-width ligeramente mayor */
+            gap: 2.8rem; /* Más espacio */
+            padding: 2.8rem 0;
         }
 
         .curso-card {
             background: var(--card-bg);
             border-radius: var(--border-radius-lg);
-            padding: 2.2rem; /* Más padding */
+            padding: 2.4rem; /* Más padding */
             box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -388,15 +404,18 @@
         }
 
         .curso-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+            font-size: 1.7rem;
+            margin-bottom: 1.1rem;
             color: var(--primary);
+            font-weight: 600;
         }
 
         .curso-card p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom
+            : 1.6rem;
+            font-weight: 400;
         }
 
         .toggle-btn {
@@ -406,7 +425,7 @@
             width: 100%;
             background: none;
             border: none;
-            padding: 1.2rem 0; /* Más padding */
+            padding: 1.3rem 0; /* Más padding */
             color: var(--text);
             cursor: pointer;
             font-weight: 500;
@@ -418,16 +437,16 @@
         }
 
         .toggle-btn i {
-            margin-left: 1rem;
+            margin-left: 1.1rem;
             transition: transform 0.3s ease;
+            font-size: 1.1rem;
         }
 
         .curso-info {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            padding-top: 1rem
-            ;
+            padding-top: 1.2rem;
         }
 
         .curso-info ul {
@@ -436,10 +455,11 @@
         }
 
         .curso-info li {
-            font-size: 1rem;
-            line-height: 1.8;
-            padding: 0.5rem 0;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            padding: 0.6rem 0;
             border-bottom: 1px solid var(--border-color);
+            font-weight: 400;
         }
 
         .curso-info li:last-child {
@@ -449,7 +469,7 @@
         .curso-info li strong {
             font-weight: 600;
             color: var(--secondary);
-            margin-right: 0.5rem;
+            margin-right: 0.6rem;
         }
 
         /* Equipo */
@@ -460,8 +480,8 @@
 
         .docente-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Ajuste para mejor responsividad */
-            gap: 4rem; /* Más espacio */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Ajuste para mejor responsividad */
+            gap: 4.5rem; /* Más espacio */
             align-items: center;
         }
 
@@ -469,8 +489,8 @@
             border-radius: 50%;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            width: 280px; /* Ligeramente más pequeño */
-            height: 280px;
+            width: 300px; /* Ligeramente más grande */
+            height: 300px;
             margin: 0 auto; /* Centrar en pantallas más pequeñas */
         }
 
@@ -490,20 +510,23 @@
         }
 
         .docente-info h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
         }
 
         .docente-info h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
         }
 
         .docente-info p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 1.7rem;
+            font-weight: 400;
         }
 
         @media (min-width: 769px) {
@@ -514,7 +537,7 @@
 
         /* Sección QR */
         .qr-section {
-            padding: 5rem 0;
+            padding: 5.5rem 0;
             background: var(--card-bg);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
@@ -522,50 +545,53 @@
         }
 
         .qr-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.7rem;
+            font-weight: 600;
         }
 
         .qr-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 2.2rem;
+            font-weight: 400;
         }
 
         .qr-code {
-            max-width: 220px; /* Ligeramente más grande */
+            max-width: 240px; /* Ligeramente más grande */
             height: auto;
             border-radius: var(--border-radius-md);
             box-shadow: var(--shadow-sm);
-            margin-top: 1rem;
+            margin-top: 1.2rem;
         }
 
         /* Footer */
         footer {
             background: var(--bg);
             color: var(--text);
-            padding: 4.5rem 1rem; /* Más padding vertical */
+            padding: 5rem 1rem; /* Más padding vertical */
             text-align: center;
             margin-top: auto;
             border-top: 1px solid var(--border-color);
         }
 
         footer p {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            margin-bottom: 1.1rem;
+            font-weight: 400;
         }
 
         .social-links {
-            margin: 2.2rem 0; /* Más margen */
+            margin: 2.4rem 0; /* Más margen */
             display: flex;
             justify-content: center;
-            gap: 1.8rem; /* Más espacio */
+            gap: 2rem; /* Más espacio */
         }
 
         .social-links a {
             color: var(--text);
-            font-size: 2rem; /* Iconos más grandes */
+            font-size: 2.2rem; /* Iconos más grandes */
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
@@ -576,20 +602,20 @@
 
         .whatsapp-btn {
             position: fixed;
-            bottom: 2.5rem; /* Un poco más abajo */
-            right: 2.5rem; /* Un poco más a la derecha */
+            bottom: 3rem; /* Un poco más abajo */
+            right: 3rem; /* Un poco más a la derecha */
             background: #25D366;
             color: white;
-            padding: 1.2rem 2.2rem; /* Más padding */
+            padding: 1.3rem 2.4rem; /* Más padding */
             border-radius: var(--border-radius-xl);
             display: flex;
             align-items: center;
-            gap: 1rem; /* Más espacio */
+            gap: 1.1rem; /* Más espacio */
             text-decoration: none;
             box-shadow: var(--shadow-lg);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             z-index: 1000;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 500;
         }
 
@@ -611,7 +637,7 @@
                 left: 0;
                 right: 0;
                 background: var(--nav-bg);
-                padding: 1.5rem;
+                padding: 1.8rem;
                 flex-direction: column;
                 text-align: center;
             }
@@ -621,7 +647,7 @@
             }
 
             .menu-list li {
-                margin-bottom: 1rem;
+                margin-bottom: 1.2rem;
             }
 
             .menu-list li:last-child {
@@ -633,11 +659,11 @@
             }
 
             .hero-content h1 {
-                font-size: 3rem;
+                font-size: 3.2rem;
             }
 
             .hero-content p {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
             }
 
             .docente-container {
@@ -649,31 +675,31 @@
             }
 
             .carousel-caption {
-                bottom: 1.5rem;
-                left: 1.5rem;
-                padding: 1rem;
+                bottom: 2rem;
+                left: 2rem;
+                padding: 1.2rem;
             }
 
             .carousel-caption h3 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .carousel-caption p {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
             .carousel-controls {
-                padding: 0 0.5rem;
+                padding: 0 0.8rem;
             }
 
             .carousel-prev,
             .carousel-next {
-                padding: 0.8rem 1rem;
-                font-size: 1.2rem;
+                padding: 1rem 1.2rem;
+                font-size: 1.4rem;
             }
 
             .section-title {
-                font-size: 2.3rem;
+                font-size: 2.5rem;
             }
 
             .section-title::before,
@@ -683,32 +709,32 @@
 
             .cursos-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 1.5rem 0;
+                gap: 2.2rem;
+                padding: 1.8rem 0;
             }
 
             .curso-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .docente-imagen {
-                width: 220px;
-                height: 220px;
-            }
-
-            footer p {
-                font-size: 0.9rem;
-            }
-
-            .social-links a {
                 font-size: 1.6rem;
             }
 
+            .docente-imagen {
+                width: 250px;
+                height: 250px;
+            }
+
+            footer p {
+                font-size: 0.95rem;
+            }
+
+            .social-links a {
+                font-size: 1.8rem;
+            }
+
             .whatsapp-btn {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
+                bottom: 2rem;
+                right: 2rem;
+                padding: 1rem 1.8rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -739,35 +765,35 @@
     <main>
         <section class="banner" id="inicio">
             <div class="hero-content">
-                <h1>Tu Belleza en un Solo Lugar</h1>
-                <p>Manicura y pedicura profesional con un toque de estilo único para resaltar tu belleza natural.</p>
-                <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu cita</a>
+                <h1>Realza tu Belleza con Elegancia</h1>
+                <p>Servicios de manicura y pedicura diseñados para ofrecerte una experiencia de lujo y resaltar tu estilo único.</p>
+                <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu Cita</a>
             </div>
         </section>
 
         <section class="carousel-section" id="galeria">
-            <h2 class="section-title">Nuestra Galería</h2>
+            <h2 class="section-title">Galería de Inspiración</h2>
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="carousel-slide">
                         <img src="img1.jpg" alt="Manicura elegante">
                         <div class="carousel-caption">
-                            <h3>Elegancia en tus Manos</h3>
-                            <p>Diseños que reflejan tu sofisticación y estilo.</p>
+                            <h3>Manicura de Alta Costura</h3>
+                            <p>Diseños sofisticados para manos que deslumbran.</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <img src="img2.jpg" alt="Diseños de uñas creativos">
                         <div class="carousel-caption">
-                            <h3>Creatividad en Cada Uña</h3>
-                            <p>Exprésate con diseños únicos y originales.</p>
+                            <h3>Arte Exclusivo en tus Uñas</h3>
+                            <p>Expresión y creatividad en cada detalle.</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <img src="img3.jpg" alt="Pedicura relajante">
                         <div class="carousel-caption">
-                            <h3>Pies Suaves y Hermosos</h3>
-                            <p>Un tratamiento de spa para el cuidado de tus pies.</p>
+                            <h3>Pedicura Spa: Un Ritual de Belleza</h3>
+                            <p>Cuidado y relajación para pies perfectos.</p>
                         </div>
                     </div>
                 </div>
@@ -782,12 +808,12 @@
         </section>
 
         <section class="servicios" id="servicios">
-            <h2 class="section-title">Nuestros Servicios Exclusivos</h2>
+            <h2 class="section-title">Nuestros Servicios Distinguidos</h2>
             <div class="container">
                 <div class="cursos-grid">
                     <div class="curso-card">
-                        <h3>Manicura Clásica</h3>
-                        <p>Cuidado esencial para tus manos: limado, cutículas, exfoliación, hidratación y esmaltado profesional.</p>
+                        <h3>Manicura Clásica Sofisticada</h3>
+                        <p>Un tratamiento esencial realzado con técnicas de pulido y esmaltado impecables para una apariencia elegante.</p>
                         <button class="toggle-btn" aria-expanded="false">
                             <span>Ver Detalles</span>
                             <i class="fas fa-chevron-down"></i>
@@ -795,33 +821,16 @@
                         <div class="curso-info">
                             <ul>
                                 <li><strong>Duración:</strong> 45 minutos</li>
-                                <li><strong>Incluye:</strong> Masaje relajante</li>
-                                <li><strong>Opciones:</strong> Esmaltado regular o semipermanente</li>
-                                <li><strong>Precio:</strong> $25</li>
+                                <li><strong>Incluye:</strong> Limado de precisión, cuidado de cutículas, exfoliación suave, masaje hidratante</li>
+                                <li><strong>Acabado:</strong> Esmaltado de alta gama o semipermanente</li>
+                                <li><strong>Precio:</strong> $30</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="curso-card">
-                        <h3>Pedicura Spa</h3>
-                        <p>Un tratamiento de lujo para tus pies: exfoliación profunda, mascarilla nutritiva, piedras calientes y parafina para una relajación total.</p>
-                        <button class="toggle-btn" aria-expanded="false">
-                            <span>Ver Detalles</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="curso-info">
-                            <ul>
-                                <li><strong>Duración:</strong> 1 hora 15 minutos</li>
-                                <li><strong>Incluye:</strong> Exfoliación de talones, masaje con aceites esenciales</li>
-                                <li><strong>Beneficios:</strong> Suaviza, hidrata y revitaliza</li>
-                                <li><strong>Precio:</strong> $40</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="curso-card">
-                        <h3>Uñas Acrílicas & Gel</h3>
-                        <p>Extensiones y esculpido profesional con materiales de alta calidad para unas uñas perfectas y duraderas. Incluye diseño básico.</p>
+                        <h3>Pedicura Spa de Lujo</h3>
+                        <p>Una experiencia revitalizante que incluye exfoliación con sales marinas, mascarilla nutritiva, masaje con aceites esenciales y piedras calientes para pies suaves y descansados.</p>
                         <button class="toggle-btn" aria-expanded="false">
                             <span>Ver Detalles</span>
                             <i class="fas fa-chevron-down"></i>
@@ -829,9 +838,26 @@
                         <div class="curso-info">
                             <ul>
                                 <li><strong>Duración:</strong> 1 hora 30 minutos</li>
-                                <li><strong>Incluye:</strong> Diseño básico, acabado brillante</li>
-                                <li><strong>Materiales:</strong> Hipoalergénicos y resistentes</li>
-                                <li><strong>Precio:</strong> $60</li>
+                                <li><strong>Incluye:</strong> Baño de pies aromático, exfoliación profunda, tratamiento de talones, mascarilla, masaje relajante</li>
+                                <li><strong>Beneficios:</strong> Hidratación intensa, alivio de tensión</li>
+                                <li><strong>Precio:</strong> $50</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="curso-card">
+                        <h3>Esculpidas Acrílicas y de Gel Premium</h3>
+                        <p>Creaciones personalizadas que van desde extensiones naturales hasta diseños vanguardistas, utilizando productos de la más alta calidad para durabilidad y estilo.</p>
+                        <button class="toggle-btn" aria-expanded="false">
+                            <span>Ver Detalles</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="curso-info">
+                            <ul>
+                                <li><strong>Duración:</strong> 2 horas</li>
+                                <li><strong>Incluye:</strong> Asesoramiento de diseño, aplicación de extensiones, esculpido artístico, acabado brillante</li>
+                                <li><strong>Materiales:</strong> Acrílico y gel de primera línea</li>
+                                <li><strong>Precio:</strong> $75+ (según diseño)</li>
                             </ul>
                         </div>
                     </div>
@@ -841,15 +867,15 @@
 
         <section class="docente" id="equipo">
             <div class="container">
-                <h2 class="section-title">Conoce a Nuestra Experta</h2>
+                <h2 class="section-title">Nuestra Dedicada Profesional</h2>
                 <div class="docente-container">
                     <div class="docente-imagen">
                         <img src="Tecnica.jpeg" alt="Nuestra técnico Merly Parraga">
                     </div>
                     <div class="docente-info">
-                        <h3>Pasión y Profesionalismo</h3>
+                        <h3>Arte y Cuidado en tus Manos</h3>
                         <h2>Merly Parraga</h2>
-                        <p>Técnica certificada con más de 8 años de experiencia dedicados al arte del cuidado de manos y pies. Mi especialidad son las técnicas de esmaltado semipermanente y los diseños de uñas artísticas, siempre priorizando la higiene y la esterilización para tu seguridad y bienestar.</p>
+                        <p>Con una trayectoria de más de 8 años, mi pasión es transformar cada uña en una obra de arte. Me especializo en técnicas de esmaltado duradero, diseños creativos y tratamientos que miman tus manos y pies, siempre con un enfoque en la higiene y la personalización para cada cliente.</p>
                     </div>
                 </div>
             </div>
@@ -857,8 +883,8 @@
 
         <section class="qr-section" id="contacto">
             <div class="container">
-                <h2 class="section-title">¡Agenda tu Cita Fácilmente!</h2>
-                <p>Escanea el código QR con tu móvil para contactarnos directamente por WhatsApp y reservar tu momento de belleza.</p>
+                <h2 class="section-title">Contáctanos para tu Cita Exclusiva</h2>
+                <p>Escanea el código QR para comunicarte directamente por WhatsApp y reservar tu experiencia de belleza personalizada.</p>
                 <img src="qr.png" alt="Código QR para contacto WhatsApp" class="qr-code">
             </div>
         </section>
@@ -866,7 +892,7 @@
 
     <a href="https://wa.me/+593981619920" class="whatsapp-btn" target="_blank" aria-label="Contactar por WhatsApp">
         <i class="fab fa-whatsapp"></i>
-        <span>¡Reserva Ahora!</span>
+        <span>Agendar Cita</span>
     </a>
 
     <footer>
@@ -900,8 +926,7 @@
             const dot = document.createElement('button');
             dot.classList.add('carousel-dot');
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => moveToSlide(index
-            ));
+            dot.addEventListener('click', () => moveToSlide(index));
             dotsContainer.appendChild(dot);
         });
 
