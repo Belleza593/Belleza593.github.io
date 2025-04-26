@@ -110,76 +110,146 @@
             padding: 0 1rem;
         }
 
-        /* Navbar */
-        nav {
-            background: var(--nav-bg);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow-md);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-        }
+       /* ========== ESTILOS DEL MENÚ ========== */
+nav {
+    background: var(--nav-bg);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
 
-        .logo a {
-            color: var(--primary);
-            font-weight: 600; /* Ligeramente más ligero que antes */
-            font-size: 1.8rem; /* Un poco más grande */
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem; /* Más espacio */
-        }
+.logo a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: color var(--transition-speed) ease;
+}
 
-        .logo i {
-            font-size: 1.8rem; /* Icono del logo más grande si lo añades */
-        }
+.logo span {
+    color: var(--primary-light);
+}
 
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
+.logo i {
+    font-size: 1.8rem;
+}
 
-        .menu-list {
-            list-style: none;
-            display: flex;
-            gap: 2rem; /* Más espacio entre enlaces */
-            align-items: center;
-        }
+.menu-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
 
-        .menu-list a {
-            color: var(--text);
-            font-weight: 500;
-            padding: 0.7rem 1.3rem; /* Más padding */
-            border-radius: var(--border-radius-sm);
-            position: relative;
-            transition: all var(--transition-speed);
-            letter-spacing: 0.3px; /* Ligero espaciado */
-        }
+.menu-list a {
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    letter-spacing: 0.3px;
+}
 
-        .menu-list a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px; /* Línea un poco más abajo */
-            left: 0;
-            width: 0;
-            height: 3px; /* Línea más gruesa */
-            background: var(--primary);
-            transition: width var(--transition-speed) ease;
-        }
+.menu-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    transition: width var(--transition-speed) ease;
+}
 
-        .menu-list a:hover::after {
-            width: 100%;
-        }
+.menu-list a:hover::after {
+    width: 100%;
+}
+
+.menu-list a.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform var(--transition-speed) ease;
+}
+
+.menu-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ========== MENÚ RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .menu-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        padding: 1.8rem;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+    }
+
+    .menu-list.active {
+        display: flex;
+    }
+
+    .menu-list li {
+        margin-bottom: 1.2rem;
+    }
+
+    .menu-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .menu-list a {
+        padding: 1rem;
+        display: block;
+        width: 100%;
+    }
+}
+
+/* ========== MODO OSCURO ========== */
+body.dark-mode .menu-list a {
+    color: var(--text-dark);
+}
+
+body.dark-mode .menu-list a.active {
+    color: var(--primary-dark);
+}
+
+body.dark-mode .logo a {
+    color: var(--primary-dark);
+}
+
+body.dark-mode .logo span {
+    color: var(--primary-dark);
+}
 
         /* Banner principal */
         .banner {
@@ -738,34 +808,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .menu-btn {
-                display: block;
-            }
-
-            .menu-list {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--nav-bg);
-                padding: 1.8rem;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .menu-list.active {
-                display: flex;
-            }
-
-            .menu-list li {
-                margin-bottom: 1.2rem;
-            }
-
-            .menu-list li:last-child {
-                margin-bottom: 0;
-            }
-
+            
             .banner {
                 height: 70vh; /* Ajuste en móvil */
             }
@@ -854,7 +897,7 @@
 <body>
     <nav>
         <div class="logo">
-            <a href="#inicio"><i class="fas fa-cut"></i> Manicura<span style="color: var(--primary-light);">Clásica</span></a>
+            <a href="#inicio"><i class="fas fa-cut"></i> Manicura<span>Clásica</span></a>
         </div>
         <button class="menu-btn" aria-label="Toggle Menu" aria-expanded="false">
             <i class="fas fa-bars"></i>
