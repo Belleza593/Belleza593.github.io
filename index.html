@@ -402,6 +402,22 @@
             transform: scale(1.05);
         }
 
+        /* Sección QR */
+        .qr-section {
+            padding: 4rem 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .qr-code {
+            max-width: 200px;
+            height: auto;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            margin-top: 1rem;
+        }
+
         /* Footer */
         footer {
             background: var(--bg);
@@ -500,9 +516,9 @@
         </button>
         <ul class="menu-list">
             <li><a href="#inicio" class="active">Inicio</a></li>
+            <li><a href="#galeria">Galería</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#equipo">Equipo</a></li>
-            <li><a href="#galeria">Galería</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li>
                 <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
@@ -660,6 +676,12 @@
     </footer>
 
     <script>
+        // Bloquear clic derecho y teclas de inspección
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
+        });
+
         // Carrusel
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
@@ -731,12 +753,7 @@
             moveToSlide(currentIndex);
         });
 
-        // Resto del JavaScript original
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
-        });
-
+        // Menu móvil
         const menuBtn = document.querySelector('.menu-btn');
         const menuList = document.querySelector('.menu-list');
         const menuLinks = document.querySelectorAll('.menu-list a');
@@ -753,6 +770,7 @@
             });
         });
 
+        // Modo oscuro
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -763,6 +781,7 @@
             document.body.classList.add('dark-mode');
         }
 
+        // Detalles de servicios
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const content = btn.nextElementSibling;
@@ -778,6 +797,7 @@
             });
         });
 
+        // Navegación activa al scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -795,6 +815,7 @@
             observer.observe(section);
         });
 
+        // Mostrar/ocultar botón de WhatsApp al scroll
         const whatsappBtn = document.querySelector('.whatsapp-btn');
         window.addEventListener('scroll', () => {
             whatsappBtn.style.transform = window.scrollY > 100 
