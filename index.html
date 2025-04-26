@@ -529,6 +529,85 @@
             font-weight: 400;
         }
 
+        /* Cookie Consent Styles */
+.cookie-consent {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    border-top: 2px solid var(--primary);
+    z-index: 1001;
+    transition: bottom 0.5s ease-in-out;
+}
+
+.cookie-consent.active {
+    bottom: 0;
+}
+
+.cookie-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cookie-content p {
+    flex: 1 1 300px;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.cookie-buttons {
+    flex: 0 1 auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.cookie-btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cookie-btn.accept {
+    background: var(--primary);
+    color: white;
+}
+
+.cookie-btn.reject {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-color);
+}
+
+.cookie-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cookie-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
         @media (min-width: 769px) {
             .docente-info {
                 text-align: left; /* Alinear a la izquierda en pantallas más grandes */
@@ -907,6 +986,17 @@
         </div>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+<div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-content">
+        <p>Nuestro sitio web utiliza cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies.</p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn reject" id="rejectCookies">Rechazar todas las cookies</button>
+            <button class="cookie-btn accept" id="acceptCookies">Aceptar todas las cookies</button>
+        </div>
+    </div>
+</div>
+
     <script>
         // Bloquear clic derecho y teclas de inspección
         document.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -920,6 +1010,47 @@
         const dotsContainer = document.querySelector('.carousel-dots');
         let currentIndex = 0;
         let autoSlideInterval;
+
+        // Cookie Consent Logic
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptCookies = document.getElementById('acceptCookies');
+const rejectCookies = document.getElementById('rejectCookies');
+
+// Check if cookie preference is stored
+function checkCookieConsent() {
+    return localStorage.getItem('cookiesAccepted');
+}
+
+// Show banner if no consent decision exists
+function showCookieBanner() {
+    if (!checkCookieConsent()) {
+        cookieConsent.classList.add('active');
+    }
+}
+
+// Hide banner and store preference
+function hideCookieBanner() {
+    cookieConsent.classList.remove('active');
+}
+
+// Event Listeners
+acceptCookies.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    hideCookieBanner();
+    // Aquí puedes agregar la carga de scripts de cookies
+});
+
+rejectCookies.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'false');
+    hideCookieBanner();
+    // Aquí puedes agregar código para eliminar cookies existentes si es necesario
+});
+
+// Initialize cookie check on page load
+document.addEventListener('DOMContentLoaded', showCookieBanner);
+
+// Optional: Clear storage for testing
+// localStorage.removeItem('cookiesAccepted');
 
         // Crear puntos indicadores
         slides.forEach((_, index) => {
