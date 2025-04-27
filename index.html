@@ -908,6 +908,16 @@ body.dark-mode .logo span {
             margin-top: 1rem;
         }
 
+        .detalles-contenido {
+    transition: 
+        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease-out;
+}
+
+.detalles-toggle i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
         .precio-item {
             padding: 1.5rem;
             background: white;
@@ -1169,13 +1179,12 @@ body.dark-mode .logo span {
             <li><a href="#galeria"><i class="far fa-images"></i> Galería</a></li>
             <li><a href="#equipo"><i class="fas fa-users"></i> Equipo</a></li>
             <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
-            <!--
-            <li>
+           <!-- <li>
                 <button class="dark-toggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
-                </button>-->
-            </li>
+                </button>
+            </li>-->
         </ul>
     </nav>
 
@@ -1343,14 +1352,15 @@ body.dark-mode .logo span {
         </div>
     </div>
 </div>
+
 <script>
-    // Bloquear inspección
+    // Bloquear inspección del sitio
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('keydown', (e) => {
         if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key))) e.preventDefault();
     });
-    
-    // Efectos email
+
+    // Efectos y funcionalidad del email
     document.querySelectorAll('.email-icon').forEach(icon => {
         icon.addEventListener('mouseenter', () => {
             icon.style.transform = 'translateY(-5px) scale(1.1)';
@@ -1365,16 +1375,16 @@ body.dark-mode .logo span {
             window.location.href = 'mailto:merly2431@gmail.com?subject=Consulta&body=Hola, quisiera más información sobre...';
         });
     });
-    
-    // Carrusel
+
+    // Carrusel de imágenes
     const carouselInit = () => {
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
         const dotsContainer = document.querySelector('.carousel-dots');
         let currentIndex = 0;
         let autoSlideInterval;
-    
-        // Crear puntos de navegación
+
+        // Crear indicadores de puntos
         slides.forEach((_, index) => {
             const dot = document.createElement('button');
             dot.className = 'carousel-dot';
@@ -1382,44 +1392,45 @@ body.dark-mode .logo span {
             dot.addEventListener('click', () => moveToSlide(index));
             dotsContainer.appendChild(dot);
         });
-    
+
         const dots = Array.from(dotsContainer.children);
-    
+
         const updateDots = (index) => {
             dots.forEach(dot => dot.classList.remove('active'));
             dots[index].classList.add('active');
         };
-    
+
         const moveToSlide = (index) => {
             track.style.transform = `translateX(-${index * 100}%)`;
             currentIndex = index;
             updateDots(index);
         };
-    
+
+        // Controles de navegación
         document.querySelector('.carousel-prev').addEventListener('click', () => {
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
             moveToSlide(currentIndex);
         });
-    
+
         document.querySelector('.carousel-next').addEventListener('click', () => {
             currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
             moveToSlide(currentIndex);
         });
-    
-        // Control automático
+
+        // Autoplay
         const startAutoSlide = () => {
             autoSlideInterval = setInterval(() => {
                 currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
                 moveToSlide(currentIndex);
             }, 5000);
         };
-    
+
         startAutoSlide();
-    
+
         // Controles de interacción
         track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
         track.addEventListener('mouseleave', startAutoSlide);
-    
+
         // Control táctil
         let touchStartX = 0;
         track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
@@ -1433,10 +1444,10 @@ body.dark-mode .logo span {
             );
         });
     };
-    
-    // Cookies
-    const cookieConsent = document.getElementById('cookieConsent');
+
+    // Gestión de cookies
     const initCookieConsent = () => {
+        const cookieConsent = document.getElementById('cookieConsent');
         const acceptCookies = document.getElementById('acceptCookies');
         const rejectCookies = document.getElementById('rejectCookies');
         
@@ -1444,7 +1455,7 @@ body.dark-mode .logo span {
             localStorage.setItem('cookiesAccepted', accepted);
             cookieConsent.classList.remove('active');
         };
-    
+
         acceptCookies.addEventListener('click', () => setConsent(true));
         rejectCookies.addEventListener('click', () => setConsent(false));
         
@@ -1452,30 +1463,62 @@ body.dark-mode .logo span {
             cookieConsent.classList.add('active');
         }
     };
-    
-    // Menú y tema
+
+    // Menú y tema oscuro
     const initMenuAndTheme = () => {
         const menuBtn = document.querySelector('.menu-btn');
         const menuList = document.querySelector('.menu-list');
         const darkToggle = document.querySelector('.dark-toggle');
-    
+
+        // Toggle menú móvil
         menuBtn.addEventListener('click', () => {
             menuList.classList.toggle('active');
             menuBtn.querySelector('i').classList.toggle('fa-times');
         });
-    
+
+        // Toggle tema oscuro
         darkToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
-    
+
+        // Cargar preferencia de tema
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
         }
     };
-    
-    // Acordeones
+
+    // Sistema de acordeones
     const initAccordions = () => {
+        // Acordeón principal de servicios
+        const serviceAccordion = document.querySelector('.detalles-toggle');
+        if (serviceAccordion) {
+            const contenido = document.querySelector('.detalles-contenido');
+            const icono = serviceAccordion.querySelector('i');
+            let isOpen = false;
+
+            const toggleAcordeon = () => {
+                isOpen = !isOpen;
+                contenido.style.maxHeight = isOpen ? `${contenido.scrollHeight}px` : '0';
+                icono.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                
+                // Estilos dinámicos para tema oscuro
+                if(document.body.classList.contains('dark-mode')) {
+                    serviceAccordion.style.backgroundColor = isOpen ? '#FF79B0' : '#616161';
+                } else {
+                    serviceAccordion.style.backgroundColor = isOpen ? '#E91E63' : '#FCE4EC';
+                }
+            };
+
+            serviceAccordion.addEventListener('click', toggleAcordeon);
+            
+            // Cierre inicial en móviles
+            if (window.innerWidth <= 768) {
+                contenido.style.maxHeight = '0';
+            }
+        }
+
+        // Otros acordeones
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const content = btn.nextElementSibling;
@@ -1485,9 +1528,10 @@ body.dark-mode .logo span {
             });
         });
     };
-    
-    // Scroll observadores
+
+    // Observadores de scroll
     const initScrollObservers = () => {
+        // Menú activo
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1497,16 +1541,16 @@ body.dark-mode .logo span {
                 }
             });
         }, { threshold: 0.5 });
-    
+
         document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
-    
-        // Botón WhatsApp
+
+        // Botón de WhatsApp
         const whatsappBtn = document.querySelector('.whatsapp-btn');
         window.addEventListener('scroll', () => {
             whatsappBtn.style.transform = window.scrollY > 100 ? 'translateY(0)' : 'translateY(150px)';
         });
     };
-    
+
     // Inicialización completa
     document.addEventListener('DOMContentLoaded', () => {
         carouselInit();
@@ -1515,7 +1559,6 @@ body.dark-mode .logo span {
         initAccordions();
         initScrollObservers();
     });
-    </script>
-   
+</script>   
 </body>
 </html>
