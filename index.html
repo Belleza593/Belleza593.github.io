@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manicura Clásica - Manicure & Pedicure</title>
+    <title>Belleza593 - Manicure & Pedicure</title>
     <link rel="icon" type="image/x-icon" href="logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,20 +16,26 @@
             --secondary-light: #F48FB1; /* Rosa más suave */
             --accent-light: #FFD740; /* Amarillo dorado */
             --text-light: #333333; /* Gris oscuro elegante */
+            --text-secondary-light: #666666; /* Gris más claro para descripciones */
             --bg-light: #FCE4EC; /* Rosa muy claro */
             --card-bg-light: #FFFFFF;
             --border-light: #F8BBD0; /* Rosa pálido */
             --nav-bg-light: rgba(255, 255, 255, 0.95);
+            --hover-bg-light: #FFB3D9;
+            --toggle-bg-light: #FCE4EC;
 
             /* Colores Modo Oscuro (opcional, pero considerado) */
             --primary-dark: #F06292;
             --secondary-dark: #EC407A;
             --accent-dark: #FFB300;
             --text-dark: #EEEEEE;
+            --text-secondary-dark: #BBBBBB;
             --bg-dark: #212121;
             --card-bg-dark: #424242;
             --border-dark: #616161;
             --nav-bg-dark: rgba(33, 33, 33, 0.95);
+            --hover-bg-dark: #424242;
+            --toggle-bg-dark: #333333;
 
             --font-primary: 'Playfair Display', serif; /* Fuente elegante */
             --font-secondary: 'Poppins', sans-serif; /* Fuente para algunos elementos */
@@ -48,107 +54,27 @@
             --secondary: var(--secondary-light);
             --accent: var(--accent-light);
             --text: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
             --bg: var(--bg-light);
             --card-bg: var(--card-bg-light);
             --border-color: var(--border-light);
             --nav-bg: var(--nav-bg-light);
+            --hover-bg: var(--hover-bg-light);
+            --toggle-bg: var(--toggle-bg-light);
         }
-
-        .servicio-card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 2.5rem;
-    margin: 2rem auto;
-    max-width: 800px;
-    box-shadow: 0 10px 30px rgba(var(--primary), 0.1);
-    border: 2px solid var(--primary);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.servicio-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.servicio-icono {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.8rem;
-}
-
-.servicio-titulo {
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.servicio-descripcion {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.detalles-toggle {
-    width: 100%;
-    padding: 1rem;
-    background: var(--toggle-bg);
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.detalles-toggle:hover {
-    background: var(--primary);
-    color: white;
-}
-
-.lista-servicios li {
-    border-bottom: 1px dashed var(--border);
-    color: var(--text);
-}
-
-.precios-seccion {
-    background: rgba(var(--primary), 0.05);
-    border: 2px solid var(--primary);
-}
-
-.precio-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-}
-
-.precio-tipo {
-    color: var(--primary);
-}
-
-.precio-valor {
-    color: var(--text);
-}
 
         body.dark-mode {
             --primary: var(--primary-dark);
             --secondary: var(--secondary-dark);
             --accent: var(--accent-dark);
             --text: var(--text-dark);
+            --text-secondary: var(--text-secondary-dark);
             --bg: var(--bg-dark);
             --card-bg: var(--card-bg-dark);
             --border-color: var(--border-dark);
             --nav-bg: var(--nav-bg-dark);
+            --hover-bg: var(--hover-bg-dark);
+            --toggle-bg: var(--toggle-bg-dark);
         }
 
         * {
@@ -164,10 +90,12 @@
             font-family: var(--font-primary);
             font-weight: 500;
             line-height: 1.2;
+            color: var(--text);
         }
 
         p, a, li, span, button {
             font-family: var(--font-secondary);
+            color: var(--text);
         }
 
         html {
@@ -196,184 +124,217 @@
             padding: 0 1rem;
         }
 
+        /* Efecto de aparición */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* Estructura del menú */
-nav {
-    background: var(--nav-bg);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-}
+        /* Estructura del menú */
+        nav {
+            background: var(--nav-bg);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
 
-.logo a {
-    color: var(--primary);
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.3s ease;
-}
+        .logo a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
 
-.logo span {
-    color: var(--text-color);
-}
+        .logo a span {
+            color: var(--text);
+        }
 
-.menu-list {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    align-items: center;
-}
+        .menu-list {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
 
-.menu-list a {
-    color: var(--text-color);
-    padding: 0.8rem 1.2rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
+        .menu-list a {
+            color: var(--text);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
 
-.menu-list a i {
-    width: 20px;
-    text-align: center;
-    font-size: 1.1rem;
-}
+        .menu-list a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
 
-.menu-list a:hover {
-    background: var(--hover-bg);
-    color: var(--primary);
-}
+        .menu-list a:hover {
+            background: var(--hover-bg);
+            color: var(--primary);
+        }
 
-.menu-list a.active {
-    color: var(--primary);
-    font-weight: 600;
-}
+        .menu-list a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
 
-/* Botón modo oscuro */
-.dark-toggle {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    padding: 0.8rem;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-}
+        /* Botón modo oscuro */
+        .dark-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
 
-.dark-toggle:hover {
-    background: var(--hover-bg);
-}
+        .dark-toggle:hover {
+            background: var(--hover-bg);
+        }
 
-.dark-toggle .fa-sun {
-    display: none;
-}
+        .dark-toggle .fa-sun {
+            display: none;
+        }
 
-.dark-mode .dark-toggle .fa-moon {
-    display: none;
-}
+        .dark-mode .dark-toggle .fa-moon {
+            display: none;
+        }
 
-.dark-mode .dark-toggle .fa-sun {
-    display: block;
-}
+        .dark-mode .dark-toggle .fa-sun {
+            display: block;
+        }
 
-/* Menú móvil */
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
+        /* Menú móvil */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-@media (max-width: 768px) {
-    .menu-btn {
-        display: block;
-    }
-    
-    .menu-list {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        background: var(--nav-bg);
-        transition: left 0.3s ease;
-        padding: 2rem;
-        gap: 1rem;
-    }
-    
-    .menu-list.active {
-        left: 0;
-    }
-    
-    .menu-list li {
-        width: 100%;
-    }
-    
-    .menu-list a {
-        justify-content: center;
-        padding: 1rem;
-    }
-}
-/* ========== MODO OSCURO ========== */
-body.dark-mode .menu-list a {
-    color: var(--text-dark);
-}
-
-body.dark-mode .menu-list a.active {
-    color: var(--primary-dark);
-}
-
-body.dark-mode .logo a {
-    color: var(--primary-dark);
-}
-
-body.dark-mode .logo span {
-    color: var(--primary-dark);
-}
-
-        /* Banner principal */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .menu-list {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                background: var(--nav-bg);
+                transition: left 0.3s ease;
+                padding: 2rem;
+                gap: 1rem;
+            }
+            
+            .menu-list.active {
+                left: 0;
+            }
+            
+            .menu-list li {
+                width: 100%;
+            }
+            
+            .menu-list a {
+                justify-content: center;
+                padding: 1rem;
+            }
+        }
+        /* ========== MODO OSCURO ========== */
+        body.dark-mode .logo a span {
+            color: var(--text);
+        }
+        
+        /* Banner principal (Carrusel) */
         .banner {
-            height: 75vh; /* Un poco menos alto */
+            position: relative;
+            height: 75vh;
             min-height: 450px;
-            background: linear-gradient(rgba(233, 30, 99, 0.5), rgba(233, 30, 99, 0.5)), url('salon-bg-female.jpg') center/cover; /* Fondo más femenino */
+            overflow: hidden;
+        }
+        
+        .banner-carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        
+        .banner-carousel-slide {
+            min-width: 100%;
+            position: relative;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            position: relative;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+            transition: background-image 0.8s ease-in-out;
         }
 
+        /* Aquí ajustas las imágenes de fondo para cada slide */
+        .banner-carousel-slide:nth-child(1) {
+            background: linear-gradient(rgba(233, 30, 99, 0.5), rgba(233, 30, 99, 0.5)), url('salon-bg-female.jpg') center/cover;
+        }
+        .banner-carousel-slide:nth-child(2) {
+            background: linear-gradient(rgba(233, 30, 99, 0.5), rgba(233, 30, 99, 0.5)), url('manicura.avif') center/cover;
+        }
+        .banner-carousel-slide:nth-child(3) {
+            background: linear-gradient(rgba(233, 30, 99, 0.5), rgba(233, 30, 99, 0.5)), url('Pedicura Spa.jpg') center/cover;
+        }
+        
+        /* Estilos para el texto dentro del carrusel */
         .hero-content {
             max-width: 850px;
-            padding: 2.5rem; /* Más padding */
+            padding: 2.5rem;
             position: relative;
             z-index: 1;
+            /* Transición para el texto */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .banner-carousel-slide.active .hero-content {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-content h1 {
-            font-size: 4rem; /* Más grande y elegante */
+            font-size: 4rem;
             margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-            letter-spacing: 0.8px; /* Ligero espaciado */
+            letter-spacing: 0.8px;
+            color: white;
         }
 
         .hero-content p {
@@ -382,6 +343,7 @@ body.dark-mode .logo span {
             margin-bottom: 2.2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             font-weight: 400;
+            color: white;
         }
 
         .cta-button {
@@ -390,7 +352,7 @@ body.dark-mode .logo span {
             gap: 1.1rem;
             background-color: var(--primary);
             color: white;
-            padding: 1.4rem 3.4rem; /* Más padding */
+            padding: 1.4rem 3.4rem;
             border-radius: var(--border-radius-xl);
             font-weight: 600;
             text-transform: uppercase;
@@ -405,8 +367,8 @@ body.dark-mode .logo span {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
-
-        /* Carrusel */
+        
+        /* Carrusel de Galería */
         .carousel-section {
             padding: 5rem 0;
             background: var(--bg);
@@ -419,7 +381,7 @@ body.dark-mode .logo span {
             overflow: hidden;
             border-radius: var(--border-radius-xl);
             box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color); /* Añadido borde */
+            border: 1px solid var(--border-color);
         }
 
         .carousel-track {
@@ -434,7 +396,7 @@ body.dark-mode .logo span {
 
         .carousel-slide img {
             width: 100%;
-            height: 550px; /* Un poco más alto */
+            height: 550px;
             object-fit: cover;
             display: block;
         }
@@ -446,16 +408,17 @@ body.dark-mode .logo span {
             color: white;
             text-align: left;
             max-width: 700px;
-            background: rgba(0,0,0,0.6); /* Fondo más oscuro */
+            background: rgba(0,0,0,0.6);
             padding: 2rem;
             border-radius: var(--border-radius-md);
         }
-
+        
         .carousel-caption h3 {
             font-size: 2.4rem;
             margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             font-weight: 600;
+            color: white;
         }
 
         .carousel-caption p {
@@ -463,6 +426,7 @@ body.dark-mode .logo span {
             line-height: 1.8;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             font-weight: 400;
+            color: white;
         }
 
         .carousel-controls {
@@ -477,15 +441,15 @@ body.dark-mode .logo span {
 
         .carousel-prev,
         .carousel-next {
-            background: rgba(255,255,255,0.3); /* Más translúcido */
+            background: rgba(255,255,255,0.3);
             border: none;
             color: white;
-            padding: 1.3rem 1.6rem; /* Más padding */
+            padding: 1.3rem 1.6rem;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
-            font-size: 1.6rem; /* Iconos más grandes */
+            font-size: 1.6rem;
         }
 
         .carousel-prev:hover,
@@ -504,11 +468,11 @@ body.dark-mode .logo span {
         }
 
         .carousel-dot {
-            width: 15px; /* Más grande */
-            height: 15px; /* Más grande */
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.6); /* Más translúcido */
-            border: 1px solid rgba(255,255,255,0.8); /* Borde sutil */
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -522,16 +486,18 @@ body.dark-mode .logo span {
         /* Sección servicios */
         .servicios {
             padding: 7rem 0;
+            background: var(--bg);
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem; /* Más grande */
+            font-size: 3rem;
             margin-bottom: 3.5rem;
             position: relative;
             display: inline-block;
-            width: auto; /* Ajustar al contenido */
-            padding: 0 1.2rem; /* Añadir padding lateral */
+            width: auto;
+            padding: 0 1.2rem;
+            color: var(--text);
         }
 
         .section-title::before,
@@ -540,26 +506,26 @@ body.dark-mode .logo span {
             display: inline-block;
             width: 60px;
             height: 2px;
-            background: var(--secondary); /* Color secundario para las líneas */
+            background: var(--secondary);
             vertical-align: middle;
             margin: 0 1.2rem;
         }
 
         .section-title::after {
-            width: 70px; /* Un poco más larga */
+            width: 70px;
         }
 
         .cursos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); /* Min-width ligeramente mayor */
-            gap: 2.8rem; /* Más espacio */
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2.8rem;
             padding: 2.8rem 0;
         }
 
         .curso-card {
             background: var(--card-bg);
             border-radius: var(--border-radius-lg);
-            padding: 2.4rem; /* Más padding */
+            padding: 2.4rem;
             box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -592,7 +558,7 @@ body.dark-mode .logo span {
             width: 100%;
             background: none;
             border: none;
-            padding: 1.3rem 0; /* Más padding */
+            padding: 1.3rem 0;
             color: var(--text);
             cursor: pointer;
             font-weight: 500;
@@ -647,8 +613,8 @@ body.dark-mode .logo span {
 
         .docente-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Ajuste para mejor responsividad */
-            gap: 4.5rem; /* Más espacio */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 4.5rem;
             align-items: center;
         }
 
@@ -656,9 +622,9 @@ body.dark-mode .logo span {
             border-radius: 50%;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            width: 300px; /* Ligeramente más grande */
+            width: 300px;
             height: 300px;
-            margin: 0 auto; /* Centrar en pantallas más pequeñas */
+            margin: 0 auto;
         }
 
         .docente-imagen img {
@@ -673,7 +639,7 @@ body.dark-mode .logo span {
         }
 
         .docente-info {
-            text-align: center; /* Centrar texto en pantallas pequeñas */
+            text-align: center;
         }
 
         .docente-info h3 {
@@ -687,6 +653,7 @@ body.dark-mode .logo span {
             font-size: 2.2rem;
             margin-bottom: 1.2rem;
             font-weight: 600;
+            color: var(--text);
         }
 
         .docente-info p {
@@ -694,118 +661,130 @@ body.dark-mode .logo span {
             line-height: 1.9;
             margin-bottom: 1.7rem;
             font-weight: 400;
+            color: var(--text-secondary);
         }
 
         /* Cookie Consent Styles */
-.cookie-consent {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    right: 0;
-    background: var(--card-bg);
-    color: var(--text);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    border-top: 2px solid var(--primary);
-    z-index: 1001;
-    transition: bottom 0.5s ease-in-out;
-}
+        .cookie-consent {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            color: var(--text);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border-top: 2px solid var(--primary);
+            z-index: 1001;
+            transition: bottom 0.5s ease-in-out;
+        }
 
-.cookie-consent.active {
-    bottom: 0;
-}
+        .cookie-consent.active {
+            bottom: 0;
+        }
 
-.cookie-content {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-}
+        .cookie-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.cookie-content p {
-    flex: 1 1 300px;
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
+        .cookie-content p {
+            flex: 1 1 300px;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
 
-.cookie-buttons {
-    flex: 0 1 auto;
-    display: flex;
-    gap: 1rem;
-}
+        .cookie-buttons {
+            flex: 0 1 auto;
+            display: flex;
+            gap: 1rem;
+        }
 
-.cookie-btn {
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: var(--border-radius-sm);
-    cursor: pointer;
-    font-weight: 500;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
+        .cookie-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
 
-.cookie-btn.accept {
-    background: var(--primary);
-    color: white;
-}
+        .cookie-btn.accept {
+            background: var(--primary);
+            color: white;
+        }
 
-.cookie-btn.reject {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border-color);
-}
+        .cookie-btn.reject {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-color);
+        }
 
-.cookie-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-/* Estilos específicos para el icono de email */
-.email-icon {
-    position: relative;
-    transition: all 0.3s ease;
-}
+        .cookie-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
 
-.email-icon:hover {
-    color: #BB001B !important; /* Color rojo de Gmail */
-    transform: translateY(-3px) scale(1.1);
-}
+        /* Estilos específicos para el icono de email */
+        .email-icon {
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
-.email-icon::after {
-    content: "Gmail";
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8rem;
-    font-family: var(--font-secondary);
-    color: var(--text);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .email-icon:hover {
+            color: #BB001B !important;
+            transform: translateY(-3px) scale(1.1);
+        }
 
-.email-icon:hover::after {
-    opacity: 1;
-}
+        .email-icon::after {
+            content: "Gmail";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-family: var(--font-secondary);
+            color: var(--text);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.servicio-card {
-            background: #fff;
+        .email-icon:hover::after {
+            opacity: 1;
+        }
+
+        /* Estilos de la tarjeta de servicios */
+        .servicio-card {
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 2.5rem;
             margin: 2rem auto;
             max-width: 800px;
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
-            border: 2px solid #E91E63;
+            box-shadow: 0 10px 30px rgba(var(--primary-light), 0.1);
+            border: 2px solid var(--primary);
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
+        
+        body.dark-mode .servicio-card {
+            box-shadow: 0 10px 30px rgba(var(--primary-dark), 0.1);
+        }
+        
         .servicio-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            box-shadow: 0 15px 35px rgba(var(--primary-light), 0.2);
+        }
+        
+        body.dark-mode .servicio-card:hover {
+            box-shadow: 0 15px 35px rgba(var(--primary-dark), 0.2);
         }
 
         .servicio-header {
@@ -818,7 +797,7 @@ body.dark-mode .logo span {
         .servicio-icono {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #E91E63, #F48FB1);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -829,13 +808,13 @@ body.dark-mode .logo span {
 
         .servicio-titulo {
             font-size: 1.8rem;
-            color: #E91E63;
+            color: var(--primary);
             margin-bottom: 0.5rem;
             font-family: 'Arial', sans-serif;
         }
 
         .servicio-descripcion {
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
@@ -844,8 +823,8 @@ body.dark-mode .logo span {
         .detalles-toggle {
             width: 100%;
             padding: 1rem;
-            background: #FCE4EC;
-            border: 2px solid #E91E63;
+            background: var(--toggle-bg);
+            border: 2px solid var(--primary);
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -853,11 +832,11 @@ body.dark-mode .logo span {
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            color: #E91E63;
+            color: var(--primary);
         }
 
         .detalles-toggle:hover {
-            background: #E91E63;
+            background: var(--primary);
             color: white;
         }
 
@@ -878,7 +857,7 @@ body.dark-mode .logo span {
             display: flex;
             align-items: center;
             gap: 1rem;
-            border-bottom: 1px dashed #F8BBD0;
+            border-bottom: 1px dashed var(--border-color);
             font-size: 1.1rem;
         }
 
@@ -887,7 +866,7 @@ body.dark-mode .logo span {
         }
 
         .lista-servicios i {
-            color: #E91E63;
+            color: var(--primary);
             width: 25px;
             text-align: center;
             font-size: 1.2rem;
@@ -897,8 +876,25 @@ body.dark-mode .logo span {
             background: rgba(233, 30, 99, 0.05);
             padding: 1.5rem;
             border-radius: 15px;
-            border: 2px solid #E91E63;
+            border: 2px solid var(--primary);
             margin-top: 1.5rem;
+        }
+        
+        body.dark-mode .precios-seccion {
+            background: rgba(240, 98, 146, 0.08);
+        }
+
+        .precios-seccion h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .detalles-contenido {
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+        }
+
+        .detalles-toggle i {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .precios-grid {
@@ -907,22 +903,12 @@ body.dark-mode .logo span {
             gap: 1.5rem;
             margin-top: 1rem;
         }
-
-        .detalles-contenido {
-    transition: 
-        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease-out;
-}
-
-.detalles-toggle i {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+        
         .precio-item {
             padding: 1.5rem;
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
-            border: 1px solid #F8BBD0;
+            border: 1px solid var(--border-color);
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -932,7 +918,7 @@ body.dark-mode .logo span {
         }
 
         .precio-tipo {
-            color: #E91E63;
+            color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
@@ -941,53 +927,13 @@ body.dark-mode .logo span {
         .precio-valor {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #333;
+            color: var(--text);
         }
 
         .rotacion-activa {
             transform: rotate(180deg);
         }
-
-        @media (max-width: 768px) {
-            .servicio-card {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .servicio-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .precios-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-@media (max-width: 768px) {
-    .email-icon::after {
-        display: none; /* Ocultar texto en móviles */
-    }
-}
-
-@media (max-width: 768px) {
-    .cookie-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .cookie-buttons {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-        @media (min-width: 769px) {
-            .docente-info {
-                text-align: left; /* Alinear a la izquierda en pantallas más grandes */
-            }
-        }
-
+        
         /* Sección QR */
         .qr-section {
             padding: 5.5rem 0;
@@ -1009,10 +955,11 @@ body.dark-mode .logo span {
             line-height: 1.9;
             margin-bottom: 2.2rem;
             font-weight: 400;
+            color: var(--text-secondary);
         }
 
         .qr-code {
-            max-width: 240px; /* Ligeramente más grande */
+            max-width: 240px;
             height: auto;
             border-radius: var(--border-radius-md);
             box-shadow: var(--shadow-sm);
@@ -1023,7 +970,7 @@ body.dark-mode .logo span {
         footer {
             background: var(--bg);
             color: var(--text);
-            padding: 5rem 1rem; /* Más padding vertical */
+            padding: 5rem 1rem;
             text-align: center;
             margin-top: auto;
             border-top: 1px solid var(--border-color);
@@ -1033,18 +980,19 @@ body.dark-mode .logo span {
             font-size: 1.05rem;
             margin-bottom: 1.1rem;
             font-weight: 400;
+            color: var(--text-secondary);
         }
 
         .social-links {
-            margin: 2.4rem 0; /* Más margen */
+            margin: 2.4rem 0;
             display: flex;
             justify-content: center;
-            gap: 2rem; /* Más espacio */
+            gap: 2rem;
         }
 
         .social-links a {
             color: var(--text);
-            font-size: 2.2rem; /* Iconos más grandes */
+            font-size: 2.2rem;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
@@ -1055,15 +1003,15 @@ body.dark-mode .logo span {
 
         .whatsapp-btn {
             position: fixed;
-            bottom: 3rem; /* Un poco más abajo */
-            right: 3rem; /* Un poco más a la derecha */
+            bottom: 3rem;
+            right: 3rem;
             background: #25D366;
             color: white;
-            padding: 1.3rem 2.4rem; /* Más padding */
+            padding: 1.3rem 2.4rem;
             border-radius: var(--border-radius-xl);
             display: flex;
             align-items: center;
-            gap: 1.1rem; /* Más espacio */
+            gap: 1.1rem;
             text-decoration: none;
             box-shadow: var(--shadow-lg);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1081,7 +1029,7 @@ body.dark-mode .logo span {
         @media (max-width: 768px) {
             
             .banner {
-                height: 70vh; /* Ajuste en móvil */
+                height: 70vh;
             }
 
             .hero-content h1 {
@@ -1097,7 +1045,7 @@ body.dark-mode .logo span {
             }
 
             .carousel-slide img {
-                height: 400px; /* Ajuste en móvil */
+                height: 400px;
             }
 
             .carousel-caption {
@@ -1130,7 +1078,7 @@ body.dark-mode .logo span {
 
             .section-title::before,
             .section-title::after {
-                display: none; /* Ocultar líneas en móvil */
+                display: none;
             }
 
             .cursos-grid {
@@ -1162,13 +1110,46 @@ body.dark-mode .logo span {
                 padding: 1rem 1.8rem;
                 font-size: 1rem;
             }
+            
+            .email-icon::after {
+                display: none;
+            }
+            
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .servicio-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .servicio-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .precios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (min-width: 769px) {
+            .docente-info {
+                text-align: left;
+            }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <a href="#inicio"><i class="fas fa-hand-sparkles"></i> Manicura<span>Clásica</span></a>
+            <a href="#inicio"><i class="fas fa-hand-sparkles"></i> Belleza<span>593</span></a>
         </div>
         <button class="menu-btn" aria-label="Toggle Menu">
             <i class="fas fa-bars"></i>
@@ -1189,15 +1170,33 @@ body.dark-mode .logo span {
     </nav>
 
     <main>
-        <section class="banner" id="inicio">
-            <div class="hero-content">
-                <h1>Realza tu Belleza con Elegancia</h1>
-                <p>Servicios de manicura y pedicura diseñados para ofrecerte una experiencia de lujo y resaltar tu estilo único.</p>
-                <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu Cita</a>
+        <section class="banner fade-in-element" id="inicio">
+            <div class="banner-carousel-track">
+                <div class="banner-carousel-slide">
+                    <div class="hero-content">
+                        <h1>Realza tu Belleza con Elegancia</h1>
+                        <p>Servicios de manicura y pedicura diseñados para ofrecerte una experiencia de lujo y resaltar tu estilo único.</p>
+                        <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu Cita</a>
+                    </div>
+                </div>
+                <div class="banner-carousel-slide">
+                    <div class="hero-content">
+                        <h1>Realza tu Belleza con Elegancia</h1>
+                        <p>Servicios de manicura y pedicura diseñados para ofrecerte una experiencia de lujo y resaltar tu estilo único.</p>
+                        <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu Cita</a>
+                    </div>
+                </div>
+                <div class="banner-carousel-slide">
+                    <div class="hero-content">
+                        <h1>Realza tu Belleza con Elegancia</h1>
+                        <p>Servicios de manicura y pedicura diseñados para ofrecerte una experiencia de lujo y resaltar tu estilo único.</p>
+                        <a href="#contacto" class="cta-button"><i class="far fa-calendar-check"></i> Reserva tu Cita</a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </section> 
 
-        <section class="carousel-section" id="galeria">
+        <section class="carousel-section fade-in-element" id="galeria">
             <h2 class="section-title">Galería de Inspiración</h2>
             <div class="carousel-container">
                 <div class="carousel-track">
@@ -1233,50 +1232,50 @@ body.dark-mode .logo span {
             </div>
         </section>
 
-        <section class="servicio-section">
-            <div class="servicio-card">
-                <div class="servicio-header">
-                    <div class="servicio-icono">
-                        <i class="fas fa-hand-sparkles"></i>
+        <section class="servicios fade-in-element" id="servicios">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="container">
+                <div class="servicio-card">
+                    <div class="servicio-header">
+                        <div class="servicio-icono">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                        <div>
+                            <h3 class="servicio-titulo">Manicura Clásica</h3>
+                            <p class="servicio-descripcion">Transformación completa de tus uñas con técnicas profesionales y materiales de primera calidad.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="servicio-titulo">Manicura Clásica</h3>
-                        <p class="servicio-descripcion">Transformación completa de tus uñas con técnicas profesionales y materiales de primera calidad.</p>
-                    </div>
-                </div>
-    
-                <button class="detalles-toggle">
-                    <span>Ver Detalles Completos</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-    
-                <div class="detalles-contenido">
-                    <ul class="lista-servicios">
-                        <li><i class="fas fa-check-circle"></i>Limado de precisión</li>
-                        <li><i class="fas fa-check-circle"></i>Cuidado de cutículas</li>
-                        <li><i class="fas fa-check-circle"></i>Exfoliación suave</li>
-                        <li><i class="fas fa-check-circle"></i>Masaje hidratante</li>
-                        <li><i class="fas fa-check-circle"></i>Esmaltado profesional</li>
-                    </ul>
-    
-                    <div class="precios-seccion">
-                        <h4 style="color: #E91E63; margin-bottom: 1.5rem;">Nuestros Precios:</h4>
-                        <div class="precios-grid">
-                            <div class="precio-item">
-                                <div class="precio-tipo">Tradicional</div>
-                                <div class="precio-valor">$3</div>
-                            </div>
-                            <div class="precio-item">
-                                <div class="precio-tipo">Con diseños</div>
-                                <div class="precio-valor">$4</div>
-                            </div>
-                            <div class="precio-item">
-                                <div class="precio-tipo">Diseños + piedras</div>
-                                <div class="precio-valor">$5</div>
-                            </div>
-                            <div class="precio-item">
-                                <div class="precio-tipo">Semipermanente</div>
-                                <div class="precio-valor">$10</div>
+                    <button class="detalles-toggle">
+                        <span>Ver Detalles Completos</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="detalles-contenido">
+                        <ul class="lista-servicios">
+                            <li><i class="fas fa-check-circle"></i>Limado de precisión</li>
+                            <li><i class="fas fa-check-circle"></i>Cuidado de cutículas</li>
+                            <li><i class="fas fa-check-circle"></i>Exfoliación suave</li>
+                            <li><i class="fas fa-check-circle"></i>Masaje hidratante</li>
+                            <li><i class="fas fa-check-circle"></i>Esmaltado tradicional o semipermanente</li>
+                        </ul>
+                        <div class="precios-seccion">
+                            <h4 style="color: var(--primary); margin-bottom: 1.5rem;">Nuestros Precios:</h4>
+                            <div class="precios-grid">
+                                <div class="precio-item">
+                                    <div class="precio-tipo">Esmaltado tradicional</div>
+                                    <div class="precio-valor">$3</div>
+                                </div>
+                                <div class="precio-item">
+                                    <div class="precio-tipo">Esmaltado semipermanente</div>
+                                    <div class="precio-valor">$10</div>
+                                </div>
+                                <div class="precio-item">
+                                    <div class="precio-tipo">Esmaltado ojos de gato</div>
+                                    <div class="precio-valor">$12</div>
+                                </div>
+                                <div class="precio-item">
+                                    <div class="precio-tipo">Aplicación de poligel</div>
+                                    <div class="precio-valor">$15</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1284,7 +1283,7 @@ body.dark-mode .logo span {
             </div>
         </section>
 
-        <section class="docente" id="equipo">
+        <section class="docente fade-in-element" id="equipo">
             <div class="container">
                 <h2 class="section-title">Nuestra Dedicada Profesional</h2>
                 <div class="docente-container">
@@ -1300,7 +1299,7 @@ body.dark-mode .logo span {
             </div>
         </section>
 
-        <section class="qr-section" id="contacto">
+        <section class="qr-section fade-in-element" id="contacto">
             <div class="container">
                 <h2 class="section-title">Contáctanos para tu Cita Exclusiva</h2>
                 <p>Escanea el código QR para comunicarte directamente por WhatsApp y reservar tu experiencia de belleza personalizada.</p>
@@ -1316,42 +1315,37 @@ body.dark-mode .logo span {
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Manicura Clásica. Todos los derechos reservados.</p>
-            <!-- Dentro de tu sección footer, modifica el div de social-links -->
-<div class="social-links">
-    <a href="https://www.instagram.com/tu_perfil" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/tu_pagina" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook"></i>
-    </a>
-    <a href="https://www.tiktok.com/@tu_perfil" target="_blank" aria-label="TikTok">
-        <i class="fab fa-tiktok"></i>
-    </a>
-    <!-- Nuevo icono de Gmail -->
-    <a href="mailto:merly2431@gmail.com" class="email-icon" aria-label="Enviar correo electrónico">
-        <i class="fas fa-envelope"></i>
-    </a>
-
-    <a href="#inicio">
-        <i class="fas fa-home"></i>
-
-        </a>
-</div>
+            <p>&copy; 2025 Belleza593. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/tu_perfil" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/tu_pagina" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.tiktok.com/@tu_perfil" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="mailto:merly2431@gmail.com" class="email-icon" aria-label="Enviar correo electrónico">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#inicio">
+                    <i class="fas fa-home"></i>
+                </a>
+            </div>
             <p>Ciudadela la Floresta - Chone - Manabí - • Lunes a Sábado 9:00 - 20:00</p>
         </div>
     </footer>
 
-    <!-- Cookie Consent Banner -->
-<div class="cookie-consent" id="cookieConsent">
-    <div class="cookie-content">
-        <p>Nuestro sitio web utiliza cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies.</p>
-        <div class="cookie-buttons">
-            <button class="cookie-btn reject" id="rejectCookies">Rechazar todas las cookies</button>
-            <button class="cookie-btn accept" id="acceptCookies">Aceptar todas las cookies</button>
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>Nuestro sitio web utiliza cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn reject" id="rejectCookies">Rechazar todas las cookies</button>
+                <button class="cookie-btn accept" id="acceptCookies">Aceptar todas las cookies</button>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
     // Bloquear inspección del sitio
@@ -1376,7 +1370,7 @@ body.dark-mode .logo span {
         });
     });
 
-    // Carrusel de imágenes
+    // Carrusel de imágenes (Galería)
     const carouselInit = () => {
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
@@ -1444,6 +1438,42 @@ body.dark-mode .logo span {
             );
         });
     };
+    
+    // Carrusel del Banner
+    const initBannerCarousel = () => {
+        const track = document.querySelector('.banner-carousel-track');
+        const slides = Array.from(track.children);
+        let currentIndex = 0;
+        let autoSlideInterval;
+    
+        const updateSlides = (index) => {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        };
+
+        const moveToSlide = (index) => {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            currentIndex = index;
+            updateSlides(currentIndex);
+        };
+
+        // Autoplay
+        const startAutoSlide = () => {
+            autoSlideInterval = setInterval(() => {
+                currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                moveToSlide(currentIndex);
+            }, 6000); 
+        };
+    
+        // Inicializa el carrusel y el primer slide
+        moveToSlide(0);
+        startAutoSlide();
+    
+        // Controles de interacción
+        track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        track.addEventListener('mouseleave', startAutoSlide);
+    };
 
     // Gestión de cookies
     const initCookieConsent = () => {
@@ -1490,7 +1520,6 @@ body.dark-mode .logo span {
 
     // Sistema de acordeones
     const initAccordions = () => {
-        // Acordeón principal de servicios
         const serviceAccordion = document.querySelector('.detalles-toggle');
         if (serviceAccordion) {
             const contenido = document.querySelector('.detalles-contenido');
@@ -1502,23 +1531,22 @@ body.dark-mode .logo span {
                 contenido.style.maxHeight = isOpen ? `${contenido.scrollHeight}px` : '0';
                 icono.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
                 
-                // Estilos dinámicos para tema oscuro
                 if(document.body.classList.contains('dark-mode')) {
-                    serviceAccordion.style.backgroundColor = isOpen ? '#FF79B0' : '#616161';
+                    serviceAccordion.style.backgroundColor = isOpen ? 'var(--primary-dark)' : 'var(--toggle-bg-dark)';
+                    serviceAccordion.style.color = isOpen ? 'white' : 'var(--primary-dark)';
                 } else {
-                    serviceAccordion.style.backgroundColor = isOpen ? '#E91E63' : '#FCE4EC';
+                    serviceAccordion.style.backgroundColor = isOpen ? 'var(--primary-light)' : 'var(--toggle-bg-light)';
+                    serviceAccordion.style.color = isOpen ? 'white' : 'var(--primary-light)';
                 }
             };
-
+            
             serviceAccordion.addEventListener('click', toggleAcordeon);
             
-            // Cierre inicial en móviles
             if (window.innerWidth <= 768) {
                 contenido.style.maxHeight = '0';
             }
         }
 
-        // Otros acordeones
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const content = btn.nextElementSibling;
@@ -1529,9 +1557,23 @@ body.dark-mode .logo span {
         });
     };
 
+    // Observador de aparición
+    const initFadeInObserver = () => {
+        const sections = document.querySelectorAll('.fade-in-element');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(section => observer.observe(section));
+    };
+
     // Observadores de scroll
     const initScrollObservers = () => {
-        // Menú activo
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1544,19 +1586,19 @@ body.dark-mode .logo span {
 
         document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
-        // Botón de WhatsApp
         const whatsappBtn = document.querySelector('.whatsapp-btn');
         window.addEventListener('scroll', () => {
             whatsappBtn.style.transform = window.scrollY > 100 ? 'translateY(0)' : 'translateY(150px)';
         });
     };
 
-    // Inicialización completa
     document.addEventListener('DOMContentLoaded', () => {
         carouselInit();
+        initBannerCarousel();
         initCookieConsent();
         initMenuAndTheme();
         initAccordions();
+        initFadeInObserver();
         initScrollObservers();
     });
 </script>   
